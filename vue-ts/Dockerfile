@@ -1,6 +1,4 @@
-FROM node:12.20.1-alpine
-
-WORKDIR /src
+FROM node:10.8.0-stretch
 
 RUN npm install --global @vue/cli
 
