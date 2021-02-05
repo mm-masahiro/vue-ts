@@ -10,7 +10,17 @@ export default defineComponent({
 	name: 'Welcome',
 	data() {
 		return {
-			msg: 'Hello, TypeScript'
+			msg: 'Hello, TypeScript',
+		}
+	},
+	computed: {
+		getLength(): number {
+			return this.msg.length
+		}
+	},
+	methods: {
+		changeMsg() {
+			return this.msg = 3
 		}
 	}
 })
