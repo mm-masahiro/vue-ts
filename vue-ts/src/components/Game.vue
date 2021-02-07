@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>hoge</p>
+		<img class="show-hand" src="../assets/hand1.png" />
 		<ul class="hand">
 			<li class="hand--list">
 				<button class="hand--list__type">グー</button>
@@ -24,6 +24,11 @@ export default defineComponent({
 
 
 <style>
+.show-hand {
+	height: 200px;
+	padding: 30px;
+}
+
 .hand {
 	list-style: none;
 	display: flex;
