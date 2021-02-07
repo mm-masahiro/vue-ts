@@ -3,15 +3,18 @@
 		<img class="show-hand" v-bind:src="handsList[currentHand]" />
 		<ul class="hand">
 			<li class="hand--list">
-				<button class="hand--list__type">グー</button>
+				<button class="hand--list__type" @click="stop">グー</button>
 			</li>
 			<li class="hand--list">
-				<button class="hand--list__type">チョキ</button>
+				<button class="hand--list__type" @click="stop">チョキ</button>
 			</li>
 			<li class="hand--list">
-				<button class="hand--list__type">パー</button>
+				<button class="hand--list__type" @click="stop">パー</button>
 			</li>
 		</ul>
+		<div>
+			<button @click="start">Start</button>
+		</div>
 	</div>
 </template>
 
@@ -44,6 +47,9 @@ export default defineComponent({
 			this.timer = setInterval(() => {
 				this.changeCurrentHand()
 			}, 	100)
+		},
+		stop() {
+			clearInterval(this.timer)
 		}
 	}
 })
