@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<img class="show-hand" src="../assets/hand1.png" />
+		<img class="show-hand" v-bind:src="handsList[currentHand]" />
 		<ul class="hand">
 			<li class="hand--list">
 				<button class="hand--list__type">グー</button>
@@ -16,9 +16,36 @@
 </template>
 
 <script lang="ts">
+declare function require(string): any
 import Vue, { defineComponent } from 'vue'
 export default defineComponent({
-	name: 'Game'
+	name: 'Game',
+	data() {
+		return {
+			src: require('../assets/hand1.png'),
+			handsList: [
+				require('../assets/hand1.png'),
+				require('../assets/hand2.png'),
+				require('../assets/hand3.png'),
+			],
+			currentHand: 0,
+			timer: null,
+		}
+	},
+	created() {
+		this.start()
+	},
+	methods: {
+		changeCurrentHand() {
+			this.currentHand ++
+			this.currentHand = this.currentHand % 3
+		},
+		start() {
+			this.timer = setInterval(() => {
+				this.changeCurrentHand()
+			}, 	100)
+		}
+	}
 })
 </script>
 
