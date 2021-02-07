@@ -63,7 +63,7 @@ interface Book {
 	year: number;
 }
 
-interface User {
+export interface User {
 	firstName: string;
 	lastName: string;
 	age: number;
