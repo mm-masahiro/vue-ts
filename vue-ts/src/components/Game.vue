@@ -55,11 +55,11 @@ export default defineComponent({
 		reset() {
 			this.resultMessage = ''
 			this.timer = null
+			this.currentHand = 0
 			this.start()
 		},
 		onTap(event) {
-			// DOM要素の取得j
-			// const clickedBtn = event.target as HTMLElement;
+			// DOM要素の取得
 			const clickedBtn = event.target;
 
 			clearInterval(this.timer);
