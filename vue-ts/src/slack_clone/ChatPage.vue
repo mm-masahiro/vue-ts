@@ -6,8 +6,23 @@
 			</form>
 		</div>
 		<div class="slack-clone--main">
-			<div class="slack-clone--main__channel">チャンネル</div>
-			<div class="slack-clone--main__chat">チャットスペース</div>
+			<div class="slack-clone--main__channel">
+				<div class="slack-clone--main__channel-name">スレッド</div>
+				<div class="slack-clone--main__channel-name"># channel-1</div>
+				<div class="slack-clone--main__channel-name"># channel-2</div>
+			</div>
+			<div class="slack-clone--main__chat">
+				<div class="slack-clone--main__chat-contents">
+					<div class="slack-clone--main__chat-contents-icon">
+						<img src="../assets/hand1.png" class="slack-clone--main__chat-contents-icon-img">
+					</div>
+					<div class="slack-clone--main__chat-contents-profile">
+						<div>Masahiro</div>
+						<div>HogeHogeHogeHogeHogeHoge</div>
+					</div>
+				</div>
+				<div></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -51,12 +66,43 @@ export default defineComponent({
 }
 
 .slack-clone--main__channel {
-	width: 20%;
+	width: 15%;
 	background: cornflowerblue;
+	display: flex;
+	flex-direction: column;
+}
+
+.slack-clone--main__channel-name {
+	height: 20px;
+	margin-bottom: 5px;
 }
 
 .slack-clone--main__chat {
-	width: 80%;
+	width: 85%;
+}
+
+.slack-clone--main__chat-contents {
+	display: flex;
+	flex-direction: row;
+	height: 50px;
+}
+
+.slack-clone--main__chat-contents-icon {
+	width: 5%;
+	padding: 5px;
+}
+
+.slack-clone--main__chat-contents-icon-img {
+	width: 100%;
+	object-fit: contain;
+	height: 100%;
+}
+
+.slack-clone--main__chat-contents-profile {
+	width: 95%;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
 }
 
 </style>
