@@ -1,19 +1,22 @@
 <template>
 	<div>
+		<div v-if="resultMessage">
+			<h1>{{ resultMessage }}</h1>
+		</div>
 		<img class="show-hand" v-bind:src="handsList[currentHand]" />
 		<ul class="hand">
 			<li class="hand--list">
-				<button class="hand--list__type" @click="stop">グー</button>
+				<button class="hand--list__type" @click="onTap">グー</button>
 			</li>
 			<li class="hand--list">
-				<button class="hand--list__type" @click="stop">チョキ</button>
+				<button class="hand--list__type" @click="onTap">チョキ</button>
 			</li>
 			<li class="hand--list">
-				<button class="hand--list__type" @click="stop">パー</button>
+				<button class="hand--list__type" @click="onTap">パー</button>
 			</li>
 		</ul>
 		<div>
-			<button @click="start">Start</button>
+			<button @click="reset">reStart</button>
 		</div>
 	</div>
 </template>
@@ -25,6 +28,7 @@ export default defineComponent({
 	name: 'Game',
 	data() {
 		return {
+			resultMessage: '',
 			src: require('../assets/hand1.png'),
 			handsList: [
 				require('../assets/hand1.png'),
@@ -48,8 +52,32 @@ export default defineComponent({
 				this.changeCurrentHand()
 			}, 	100)
 		},
-		stop() {
-			clearInterval(this.timer)
+		reset() {
+			this.resultMessage = ''
+			this.timer = null
+			this.start()
+		},
+		onTap(event) {
+			// DOM要素の取得j
+			// const clickedBtn = event.target as HTMLElement;
+			const clickedBtn = event.target;
+
+			clearInterval(this.timer);
+
+			this.judgeGame(+clickedBtn.value, this.currentHand)
+		},
+		judgeGame(val, _currentHand) {
+			switch (_currentHand) {
+				case val:
+					this.resultMessage = 'Drow'
+					break
+				case (val + 1) % 3:
+					this.resultMessage = 'Win'
+					break
+				case (val + 2) % 3:
+					this.resultMessage = 'Loose'
+					break
+			}
 		}
 	}
 })
