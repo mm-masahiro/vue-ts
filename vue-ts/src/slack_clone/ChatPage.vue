@@ -3,7 +3,11 @@
 		<div class="slack-clone--header">
 			<div class="slack-clone--header__auth">
 				<div class="slack-clone--header__auth-button">
-					<button class="slack-clone--header__auth-button-in">Sign in</button>
+					<button class="slack-clone--header__auth-button-in">
+						<router-link to="/sign-in">
+							Sign in
+						</router-link>
+					</button>
 					<button class="slack-clone--header__auth-button-up">Sign up</button>
 				</div>
 			</div>
@@ -35,8 +39,9 @@
 
 <script lang="ts">
 import Vue, { defineComponent } from 'vue'
+import SignIn from './SignIn.vue'
 export default defineComponent({
-	name: 'ChatPage'
+	name: 'ChatPage',
 })
 </script>
 
