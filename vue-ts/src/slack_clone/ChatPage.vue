@@ -1,6 +1,12 @@
 <template>
 	<div class="slack-clone">
 		<div class="slack-clone--header">
+			<div class="slack-clone--header__auth">
+				<div class="slack-clone--header__auth-button">
+					<button class="slack-clone--header__auth-button-in">Sign in</button>
+					<button class="slack-clone--header__auth-button-up">Sign up</button>
+				</div>
+			</div>
 			<form class="slack-clone--header__form">
 				<input type="text" placeholder="検索" class="slack-clone--header__form-search">
 			</form>
@@ -43,6 +49,48 @@ export default defineComponent({
 .slack-clone--header {
 	height: 5%;
 	background: burlywood;
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--header__auth {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+	width: 50%;
+}
+
+.slack-clone--header__auth-button {
+	padding: 5px;
+}
+
+.slack-clone--header__auth-button-in {
+	margin-right: 20px;
+	height: 90%;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+}
+
+.slack-clone--header__auth-button-up {
+	height: 90%;
+	border: none;
+	border-radius: 5px;
+	background: #1b72e9;
+	color: white;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+}
+
+.slack-clone--header__auth-button-in:active {
+	opacity: 0.4;
+}
+
+.slack-clone--header__auth-button-up:active {
+	opacity: 0.4;
 }
 
 .slack-clone--header__form {

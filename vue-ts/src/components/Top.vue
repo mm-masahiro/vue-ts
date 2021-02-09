@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div>
+	<div class="top">
+		<div class="top--components">
 			<ChatPage />
 		</div>
 	</div>
@@ -35,7 +35,12 @@ h1 {
 	margin: 0;
 }
 
-div {
+.top {
+	height: 100%;
+	width: 100%;
+}
+
+.top--components {
 	height: 100%;
 	width: 100%;
 }
