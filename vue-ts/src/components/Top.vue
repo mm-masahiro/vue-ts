@@ -1,21 +1,22 @@
 <template>
 	<div class="top">
 		<div class="top--components">
-			<ChatPage />
+			<!-- <ChatPage /> -->
+			<router-view />
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent } from 'vue'
+// import Vue, { defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 // import Game from './Game.vue'
-import ChatPage from '../slack_clone/ChatPage.vue'
+// import ChatPage from '../slack_clone/ChatPage.vue'
 export default defineComponent({
 	name: 'Top',
-	components: {
-		// Game
-		ChatPage
-	}
+	// components: {
+	// 	ChatPage
+	// }
 })
 </script>
 
