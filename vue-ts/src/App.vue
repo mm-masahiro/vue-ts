@@ -6,6 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 // import Welcome, { User } from './components/Welcome.vue'
+
 import Top from './components/Top.vue'
 
 export default defineComponent({
