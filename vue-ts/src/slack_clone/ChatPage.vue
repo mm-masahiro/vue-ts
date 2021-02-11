@@ -5,7 +5,6 @@
 				<div class="slack-clone--header__auth-button">
 					<button class="slack-clone--header__auth-button-in">
 						<router-link to="/sign-in">Sign in</router-link>
-						<router-view />
 					</button>
 					<button class="slack-clone--header__auth-button-up">Sign up</button>
 				</div>
