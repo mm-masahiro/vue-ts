@@ -8,7 +8,7 @@ const app = createApp(App)
 
 // firebase
 // Your web app's Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
 	apiKey: "AIzaSyChB7DsnzGBaAv_LkrMLKdCCs_0-UlONCo",
 	authDomain: "vue-ts-dec8d.firebaseapp.com",
 	databaseURL: "https://vue-ts-dec8d-default-rtdb.firebaseio.com",
