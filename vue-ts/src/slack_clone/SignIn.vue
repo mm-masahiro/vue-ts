@@ -11,6 +11,11 @@
     <input v-model="message" />
     <button @click="addMessage">メッセージを追加</button>
     <button @click="pushMessage">メッセージを本当に追加</button>
+		<ul>
+			<li v-for="(message, index) in messages" :key="index">
+				{{ message.content }} index:{{ index }}
+			</li>
+		</ul>
   </div>
 	</div>
 </template>
@@ -24,8 +29,8 @@ export default defineComponent({
 	name: 'SignIn',
 	data() {
 		return {
-			// user: {}
 			message: '',
+			messages: [],
 			name: ''
 		}
 	},
@@ -49,14 +54,14 @@ export default defineComponent({
 	},
 	// mount時にデータ取得　ブラウザにアクセスすると自動でFirebaseのデータベースからデータを取ってくる
 	mounted() {
-		// firebase.database().ref('slack').on(
-		// 	// valueイベントでデータ取得
-		// 	'value', snapshot => console.log(snapshot.val())
-		// );
 		firebase.database().ref('slack').on(
-			// child_addedイベントでは最初はすべてのデータを取得し、その後はデータが追加されると追加したデータのみ取得
-			'child_added', snapshot => console.log(snapshot.val())
+			// valueイベントでデータ取得
+			'value', snapshot => (this.messages = snapshot.val())
 		);
+		// firebase.database().ref('slack').on(
+		// 	// child_addedイベントでは最初はすべてのデータを取得し、その後はデータが追加されると追加したデータのみ取得
+		// 	'child_added', snapshot => console.log(snapshot.val())
+		// );
 	}
 })
 </script>

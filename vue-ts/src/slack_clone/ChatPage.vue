@@ -21,7 +21,7 @@
 				<div class="slack-clone--main__channel-name"># channel-1</div>
 				<div class="slack-clone--main__channel-name"># channel-2</div>
 			</div>
-			<div class="slack-clone--main__chat">
+			<!-- <div class="slack-clone--main__chat">
 				<div class="slack-clone--main__chat-contents">
 					<div class="slack-clone--main__chat-contents-icon">
 						<img src="../assets/hand1.png" class="slack-clone--main__chat-contents-icon-img">
@@ -31,7 +31,10 @@
 						<div>HogeHogeHogeHogeHogeHoge</div>
 					</div>
 				</div>
-				<div></div>
+			</div> -->
+			<div class="slack-clone--body">
+				<Timeline />
+				<Comment />
 			</div>
 		</div>
 	</div>
@@ -39,9 +42,16 @@
 
 <script lang="ts">
 import Vue, { defineComponent } from 'vue'
-// import SignIn from './SignIn.vue'
+import SignIn from './SignIn.vue'
+import Timeline from './Timeline.vue'
+import Comment from './Comment.vue'
+
 export default defineComponent({
 	name: 'ChatPage',
+	components: {
+		Timeline,
+		Comment
+	}
 })
 </script>
 
@@ -166,6 +176,13 @@ export default defineComponent({
 	display: flex;
 	flex-direction: column;
 	text-align: left;
+}
+
+.slack-clone--body {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 </style>
