@@ -11,7 +11,7 @@
 // import Vue, { defineComponent } from 'vue'
 import { defineComponent } from 'vue'
 // import Game from './Game.vue'
-// import ChatPage from '../slack_clone/ChatPage.vue'
+import ChatPage from '../slack_clone/ChatPage.vue'
 export default defineComponent({
 	name: 'Top',
 	// components: {

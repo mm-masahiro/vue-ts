@@ -4,9 +4,11 @@
 			<div class="slack-clone--header__auth">
 				<div class="slack-clone--header__auth-button">
 					<button class="slack-clone--header__auth-button-in">
-						<router-link to="/sign-in">Sign in</router-link>
+						<router-link class="link--signin" to="/sign-in">Sign in</router-link>
 					</button>
-					<button class="slack-clone--header__auth-button-up">Sign up</button>
+					<button class="slack-clone--header__auth-button-up">
+						<router-link class="link--signup" to="/sign-up">Sign up</router-link>
+					</button>
 				</div>
 			</div>
 			<form class="slack-clone--header__form">
@@ -37,13 +39,23 @@
 
 <script lang="ts">
 import Vue, { defineComponent } from 'vue'
-import SignIn from './SignIn.vue'
+// import SignIn from './SignIn.vue'
 export default defineComponent({
 	name: 'ChatPage',
 })
 </script>
 
 <style>
+.link--signin {
+	text-decoration: none;
+	color: black
+}
+
+.link--signup {
+	text-decoration: none;
+	color: white;
+}
+
 .slack-clone {
 	width: 100%;
 	height: 100%;
