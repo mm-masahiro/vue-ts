@@ -24,7 +24,8 @@ export default defineComponent({
 				comment: this.message
 			})
 			console.log(this.message)
-		}
+			this.message = ''
+		},
 	},
 	mounted() {
 		firebase.database().ref('comment').on(
