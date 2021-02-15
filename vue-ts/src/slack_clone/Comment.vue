@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent } from 'vue'
+import Vue, { defineComponent, PropType } from 'vue'
 import firebase from 'firebase/app';
 import 'firebase/database'
 
@@ -23,7 +23,6 @@ export default defineComponent({
 			firebase.database().ref('comment').push({
 				comment: this.message
 			})
-			console.log(this.message)
 			this.message = ''
 		},
 	},

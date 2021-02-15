@@ -52,7 +52,7 @@ export default defineComponent({
 			})
 		}
 	},
-	// mount時にデータ取得　ブラウザにアクセスすると自動でFirebaseのデータベースからデータを取ってくる
+	// mount時にデータ取得する。ブラウザにアクセスすると自動でFirebaseのデータベースからデータを取ってくる
 	mounted() {
 		firebase.database().ref('slack').on(
 			// valueイベントでデータ取得
