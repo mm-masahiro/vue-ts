@@ -54,6 +54,7 @@ export default defineComponent({
 	height: 20%;
 	width: 10%;
 	text-align: center;
+	margin-top: 50px;
 }
 
 </style>

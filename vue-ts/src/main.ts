@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import firebase from "firebase/app";
 import "firebase/firestore";
+import store from './store';
 
 const app = createApp(App)
 
@@ -22,3 +23,4 @@ firebase.initializeApp(firebaseConfig);
 
 // app.use(store).mount('#app')
 app.use(router).mount('#app')
+app.use(store)
