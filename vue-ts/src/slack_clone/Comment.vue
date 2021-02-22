@@ -9,6 +9,7 @@
 import Vue, { defineComponent, PropType } from 'vue'
 import firebase from 'firebase/app';
 import 'firebase/database'
+import store from '../store';
 
 export default defineComponent({
 	name: 'Comment',

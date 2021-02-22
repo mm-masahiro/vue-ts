@@ -22,5 +22,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // app.use(store).mount('#app')
-app.use(router).mount('#app')
+app.use(router)
 app.use(store)
+app.mount('#app')
