@@ -20,9 +20,14 @@
 		</div>
 		<div class="slack-clone--main">
 			<div class="slack-clone--main__channel">
-				<div class="slack-clone--main__channel-name">スレッド</div>
-				<div class="slack-clone--main__channel-name"># channel-1</div>
-				<div class="slack-clone--main__channel-name"># channel-2</div>
+				<div class="slack-clone--main__channel-header">
+					<h1 class="slack-clone--main__channel-title">Slack clone</h1>
+					<!-- <img src="../assets/notification.svg" class="slack-clone--main__channel-img" /> -->
+					<Notification />
+				</div>
+				<div class="slack-clone--main__channel-name">{{ user.email }}</div>
+				<!-- <div class="slack-clone--main__channel-name"># channel-1</div>
+				<div class="slack-clone--main__channel-name"># channel-2</div> -->
 			</div>
 			<!-- <div class="slack-clone--main__chat">
 				<div class="slack-clone--main__chat-contents">
@@ -48,22 +53,39 @@ import Vue, { defineComponent } from 'vue'
 import SignIn from './SignIn.vue'
 import Timeline from './Timeline.vue'
 import Comment from './Comment.vue'
+import Notification from './Notification.vue'
 import firebase from "firebase/app"
 import "firebase/auth"
+
+// export type DataType = {
+// 	user: string | null;
+// }
 
 export default defineComponent({
 	name: 'ChatPage',
 	components: {
 		Timeline,
-		Comment
+		Comment,
+		Notification
+	},
+	// data(): DataType {
+	data() {
+		return {
+			user: ''
+		}
 	},
 	methods: {
 		signOut() {
 			firebase.auth().signOut();
 			this.$router.push('/sign-in')
 		}
+	},
+	mounted() {
+		this.user = firebase.auth().currentUser;
+		// console.log(firebase.auth().currentUser)
 	}
 })
+
 </script>
 
 <style>
@@ -167,6 +189,20 @@ export default defineComponent({
 	display: flex;
 	flex-direction: column;
 }
+
+.slack-clone--main__channel-header {
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--main__channel-title {
+	font-size: 20px;
+}
+
+/* .slack-clone--main__channel-img {
+	width: 12%;
+	padding: 2px;
+} */
 
 .slack-clone--main__channel-name {
 	height: 20px;
