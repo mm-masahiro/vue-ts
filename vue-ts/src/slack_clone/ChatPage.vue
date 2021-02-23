@@ -67,7 +67,7 @@
 			</div>
 			<div class="slack-clone--body">
 				<Timeline />
-				<Comment />
+				<!-- <Comment /> -->
 			</div>
 		</div>
 	</div>
@@ -87,7 +87,7 @@ export default defineComponent({
 	name: 'ChatPage',
 	components: {
 		Timeline,
-		Comment,
+		// Comment,
 		Notification,
 		PlusCircle
 	},
