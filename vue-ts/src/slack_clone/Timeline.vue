@@ -1,7 +1,13 @@
 <template>
 	<div class="timeline">
 		<div class="timeline--main">
-
+			<div class="timeline--main__user">
+				<Avator />
+				<div class="timeline--main__user-content">
+					<div class="timeline--main__user-content-username">{{ user.email }}</div>
+					<div class="timeline--main__user-content-comment">First message</div>
+				</div>
+			</div>
 		</div>
 		<div class="comment">
 			<textarea placeholder="xxxxへメッセージ" class="comment--input"></textarea>
@@ -17,9 +23,15 @@ import Vue, { defineComponent } from 'vue'
 import store from '../store';
 import firebase from 'firebase/app';
 import 'firebase/database'
+import 'firebase/auth'
+import Avator from './Avator.vue'
 
 export default defineComponent({
 	name: 'Timeline',
+	components: {
+		Avator
+	},
+	props: ["user"],
 	data() {
 		return {
 			message: '',
@@ -27,15 +39,16 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		sendComment() {
-			this.$store.commit('addComment')
-		},
-		removeComment() {
-			this.$store.commit('removeComment')
-		},
-		resetComment() {
-			this.$store.commit('resetComment')
-		},
+		// store使う練習
+		// sendComment() {
+		// 	this.$store.commit('addComment')
+		// },
+		// removeComment() {
+		// 	this.$store.commit('removeComment')
+		// },
+		// resetComment() {
+		// 	this.$store.commit('resetComment')
+		// },
 		submitMessage() {
 			firebase.database().ref('comment').push({
 				comment: this.message
@@ -43,15 +56,11 @@ export default defineComponent({
 			this.message = ''
 		},
 	},
-	computed: {
-		commentLine() {
-			return this.$store.state.comment
-		}
-	},
 	mounted() {
 		firebase.database().ref('comment').on(
 			'value', snapshot => (this.messages = snapshot.val())
 		)
+		console.log(this.user)
 	}
 })
 </script>
@@ -65,6 +74,24 @@ export default defineComponent({
 .timeline--main {
 	background: cadetblue;
 	height: 85%;
+}
+
+.timeline--main__user {
+	display: flex;
+	flex-direction: row;
+}
+
+.timeline--main__user-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.timeline--main__user-content-username {
+	font-weight: bold;
+}
+
+.timeline--main__user-content-comment {
+	text-align: left;
 }
 
 .comment {

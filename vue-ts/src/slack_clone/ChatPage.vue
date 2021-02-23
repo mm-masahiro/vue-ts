@@ -66,7 +66,7 @@
 				<!-- <div class="slack-clone--main__user-name"># channel-2</div> -->
 			</div>
 			<div class="slack-clone--body">
-				<Timeline />
+				<Timeline v-bind:user="user" />
 				<!-- <Comment /> -->
 			</div>
 		</div>
@@ -75,13 +75,13 @@
 
 <script lang="ts">
 import Vue, { defineComponent } from 'vue'
+import firebase from "firebase/app"
+import "firebase/auth"
 import SignIn from './SignIn.vue'
 import Timeline from './Timeline.vue'
 import Comment from './Comment.vue'
 import Notification from './Notification.vue'
 import PlusCircle from './PlusCircle.vue'
-import firebase from "firebase/app"
-import "firebase/auth"
 
 export default defineComponent({
 	name: 'ChatPage',
@@ -89,7 +89,7 @@ export default defineComponent({
 		Timeline,
 		// Comment,
 		Notification,
-		PlusCircle
+		PlusCircle,
 	},
 	data() {
 		return {
