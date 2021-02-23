@@ -57,10 +57,6 @@ import Notification from './Notification.vue'
 import firebase from "firebase/app"
 import "firebase/auth"
 
-// export type DataType = {
-// 	user: string | null;
-// }
-
 export default defineComponent({
 	name: 'ChatPage',
 	components: {
@@ -68,10 +64,9 @@ export default defineComponent({
 		Comment,
 		Notification
 	},
-	// data(): DataType {
 	data() {
 		return {
-			user: ''
+			user: firebase.auth().currentUser,
 		}
 	},
 	methods: {
@@ -82,7 +77,6 @@ export default defineComponent({
 	},
 	mounted() {
 		this.user = firebase.auth().currentUser;
-		// console.log(firebase.auth().currentUser)
 	}
 })
 
