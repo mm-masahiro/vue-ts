@@ -2,7 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import ChatPage from '../slack_clone/ChatPage.vue'
 import SignIn from '../slack_clone/SignIn.vue'
 import SignUp from '../slack_clone/SignUp.vue'
-
+import firebase from "firebase/app";
+import "firebase/auth";
 
 // const routerHistory = createWebHistory()
 
@@ -10,7 +11,17 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
 		name: 'ChatPage',
-		component: ChatPage
+		component: ChatPage,
+		beforeEnter: (to, from, next) => {
+			firebase.auth().onAuthStateChanged(user => {
+				if(user) {
+					console.log(user)
+					next()
+				} else {
+					next('/sign-in')
+				}
+			})
+		}
 	},
 	{
 		path: '/sign-in',

@@ -9,6 +9,9 @@
 					<button class="slack-clone--header__auth-button-up">
 						<router-link class="link--signup" to="/sign-up">Sign up</router-link>
 					</button>
+					<button class="slack-clone--header__auth-button-out" @click="signOut">
+						Sign Out
+					</button>
 				</div>
 			</div>
 			<form class="slack-clone--header__form">
@@ -45,12 +48,20 @@ import Vue, { defineComponent } from 'vue'
 import SignIn from './SignIn.vue'
 import Timeline from './Timeline.vue'
 import Comment from './Comment.vue'
+import firebase from "firebase/app"
+import "firebase/auth"
 
 export default defineComponent({
 	name: 'ChatPage',
 	components: {
 		Timeline,
 		Comment
+	},
+	methods: {
+		signOut() {
+			firebase.auth().signOut();
+			this.$router.push('/sign-in')
+		}
 	}
 })
 </script>
@@ -100,10 +111,22 @@ export default defineComponent({
 }
 
 .slack-clone--header__auth-button-up {
+	margin-right: 20px;
 	height: 90%;
 	border: none;
 	border-radius: 5px;
 	background: #1b72e9;
+	color: white;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+}
+
+.slack-clone--header__auth-button-out {
+	height: 90%;
+	border: none;
+	border-radius: 5px;
+	background: #e6e91b;
 	color: white;
 	font-weight: bold;
 	outline: none;

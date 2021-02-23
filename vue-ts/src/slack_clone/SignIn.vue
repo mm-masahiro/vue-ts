@@ -1,22 +1,13 @@
 <template>
-	<div>
-		<form>Sign in</form>
-		<input v-model="name" />
-		<label>User ID</label>
-		<input />
-		<label>Password</label>
-		<button type="submit">Sign in</button>
-		<div>
-    <h1>Firebaseを使った読み書き確認</h1>
-    <input v-model="message" />
-    <button @click="addMessage">メッセージを追加</button>
-    <button @click="pushMessage">メッセージを本当に追加</button>
-		<ul>
-			<li v-for="(message, index) in messages" :key="index">
-				{{ message.content }} index:{{ index }}
-			</li>
-		</ul>
-  </div>
+<div class="signin">
+		<h1 class="signin--title">サインイン</h1>
+		<form class="signin--form" @submit.prevent="signIn">
+			<p>メールアドレスを入力してください</p>
+			<input type="email" v-model="email" placeholder="xxx@example.com" class="signin--form__email" />
+			<p>パスワードを入力してください</p>
+			<input type="password" v-model="password" placeholder="パスワード" class="signin--form__pass" />
+			<button type="submit" class="signin--form__submit">サインイン</button>
+		</form>
 	</div>
 </template>
 
@@ -29,39 +20,55 @@ export default defineComponent({
 	name: 'SignIn',
 	data() {
 		return {
-			message: '',
-			messages: [],
-			name: ''
+			email: '',
+			password: ''
 		}
 	},
 	methods: {
-		addMessage() {
-			firebase.database().ref('slack').set({
-				content: this.message,
-				user: {
-					name: "Masahiro Morinaga"
-				}
-			});
-		},
-		pushMessage() {
-			firebase.database().ref('slack').push({
-				content: this.message,
-				user: {
-					name: this.name
-				}
+		signIn() {
+			firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(response => {
+				console.log(response);
+				this.$router.push('/')
+			}).catch(e => {
+				console.log(e)
 			})
 		}
-	},
-	// mount時にデータ取得する。ブラウザにアクセスすると自動でFirebaseのデータベースからデータを取ってくる
-	mounted() {
-		firebase.database().ref('slack').on(
-			// valueイベントでデータ取得
-			'value', snapshot => (this.messages = snapshot.val())
-		);
-		// firebase.database().ref('slack').on(
-		// 	// child_addedイベントでは最初はすべてのデータを取得し、その後はデータが追加されると追加したデータのみ取得
-		// 	'child_added', snapshot => console.log(snapshot.val())
-		// );
 	}
 })
 </script>
+
+<style>
+
+.signin {
+	height: 100%;
+	width: 100%;
+}
+
+.signin--title {
+	margin-bottom: 100px;
+}
+
+/* 後で修正する */
+.signin--form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0px 30% 0px 30%;
+}
+
+.signin--form__email {
+	margin-bottom: 20px;
+}
+
+.signin--form__pass {
+	margin-bottom: 50px;
+}
+
+.signin--form__submit {
+	background: turquoise;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+</style>

@@ -1,20 +1,38 @@
 <template>
 	<div class="signup">
 		<h1 class="signup--title">ユーザー登録</h1>
-		<div class="signup--form">
+		<form class="signup--form" @submit.prevent="registerUser">
 			<p>メールアドレスを入力してください</p>
-			<input type="email" placeholder="xxx@example.com" class="signup--form__email" />
+			<input type="email" v-model="email" placeholder="xxx@example.com" class="signup--form__email" />
 			<p>パスワードを入力してください</p>
-			<input type="password" placeholder="パスワード" class="signup--form__pass" />
-		</div>
-		<button type="submit">ユーザーの登録</button>
+			<input type="password" v-model="password" placeholder="パスワード" class="signup--form__pass" />
+			<button type="submit">ユーザーの登録</button>
+		</form>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue, { defineComponent } from 'vue'
+import firebase from "firebase/app"
+import "firebase/auth"
+
 export default defineComponent({
-	name: 'SignUp'
+	name: 'SignUp',
+	data() {
+		return {
+			email: '',
+			password: ''
+		}
+	},
+	methods: {
+		registerUser() {
+			firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(response => {
+				console.log(response)
+			}).catch(e => {
+				console.log(e)
+			});
+		}
+	}
 })
 </script>
 
