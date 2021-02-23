@@ -25,9 +25,22 @@
 					<!-- <img src="../assets/notification.svg" class="slack-clone--main__channel-img" /> -->
 					<Notification />
 				</div>
-				<div class="slack-clone--main__channel-name">{{ user.email }}</div>
-				<!-- <div class="slack-clone--main__channel-name"># channel-1</div>
-				<div class="slack-clone--main__channel-name"># channel-2</div> -->
+				<div class="slack-clone--main__user-name">{{ user.email }}</div>
+				<div class="slack-clone--main__user-name-header">
+					<div>チャンネル</div>
+					<PlusCircle />
+				</div>
+				<div class="slack-clone--main__channel-name" v-for="channel in channels" :key="channel.id">
+					# {{ channel.channelName }}
+				</div>
+				<div class="slack-clone--main__user-name-header">
+					<div>ダイレクトメッセージ</div>
+					<PlusCircle />
+				</div>
+				<div v-for="userlist in userLists" :key="userlist.id">
+					{{ userlist.email }}
+				</div>
+				<!-- <div class="slack-clone--main__user-name"># channel-2</div> -->
 			</div>
 			<!-- <div class="slack-clone--main__chat">
 				<div class="slack-clone--main__chat-contents">
@@ -54,6 +67,7 @@ import SignIn from './SignIn.vue'
 import Timeline from './Timeline.vue'
 import Comment from './Comment.vue'
 import Notification from './Notification.vue'
+import PlusCircle from './PlusCircle.vue'
 import firebase from "firebase/app"
 import "firebase/auth"
 
@@ -62,11 +76,40 @@ export default defineComponent({
 	components: {
 		Timeline,
 		Comment,
-		Notification
+		Notification,
+		PlusCircle
 	},
 	data() {
 		return {
 			user: firebase.auth().currentUser,
+			userLists: [
+				{
+					userId: 11,
+					email: 'hoge@email.com'
+				},
+				{
+					userId: 12,
+					email: 'tekitou0110@email.com'
+				},
+				{
+					userId: 13,
+					email: 'test@email.com'
+				},
+			],
+			channels: [
+				{
+					id: 1,
+					channelName: "Channel 1"
+				},
+				{
+					id: 2,
+					channelName: "Channel 2"
+				},
+				{
+					id: 3,
+					channelName: "Channel 3"
+				},
+			],
 		}
 	},
 	methods: {
@@ -198,9 +241,14 @@ export default defineComponent({
 	padding: 2px;
 } */
 
-.slack-clone--main__channel-name {
+.slack-clone--main__user-name {
 	height: 20px;
 	margin-bottom: 5px;
+}
+
+.slack-clone--main__user-name-header {
+	display: flex;
+	flex-direction: row;
 }
 
 .slack-clone--main__chat {
