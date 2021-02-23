@@ -1,8 +1,27 @@
 <template>
 	<div class="slack-clone">
 		<div class="slack-clone--header">
-			<div class="slack-clone--header__auth">
-				<div class="slack-clone--header__auth-button">
+			<header class="slack-clone--header__contents">
+				<div class="slack-clone--header__contents-detail">
+					<div class="slack-clone--header__contents-detail-username">{{ user.email }}</div>
+					<form class="slack-clone--header__form">
+						<input type="text" placeholder="検索" class="slack-clone--header__form-search">
+					</form>
+					<div class="slack-clone--header__contents-detail-auth">
+						<button class="slack-clone--header__auth-button-in">
+							<router-link class="link--signin" to="/sign-in">Sign in</router-link>
+						</button>
+						<button class="slack-clone--header__auth-button-up">
+							<router-link class="link--signup" to="/sign-up">Sign up</router-link>
+						</button>
+						<button class="slack-clone--header__auth-button-out" @click="signOut">
+							Sign Out
+						</button>
+					</div>
+				</div>
+			</header>
+			<!-- <div class="slack-clone--header__auth"> -->
+				<!-- <div class="slack-clone--header__auth-button">
 					<button class="slack-clone--header__auth-button-in">
 						<router-link class="link--signin" to="/sign-in">Sign in</router-link>
 					</button>
@@ -12,11 +31,11 @@
 					<button class="slack-clone--header__auth-button-out" @click="signOut">
 						Sign Out
 					</button>
-				</div>
-			</div>
-			<form class="slack-clone--header__form">
+				</div> -->
+			<!-- </div> -->
+			<!-- <form class="slack-clone--header__form">
 				<input type="text" placeholder="検索" class="slack-clone--header__form-search">
-			</form>
+			</form> -->
 		</div>
 		<div class="slack-clone--main">
 			<div class="slack-clone--main__channel">
@@ -145,7 +164,24 @@ export default defineComponent({
 	display: flex;
 	flex-direction: row;
 	text-align: left;
-	width: 50%;
+	width: 100%;
+}
+
+.slack-clone--header__contents {
+	padding: 5px;
+}
+
+.slack-clone--header__contents-detail {
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--header__contents-detail-username {
+	font-weight: bold;
+}
+
+.slack-clone--header__contents-detail-auth {
+	margin-left: 100px;
 }
 
 .slack-clone--header__auth-button {
@@ -194,7 +230,7 @@ export default defineComponent({
 }
 
 .slack-clone--header__form {
-	padding: 5px;
+	margin-left: 100px;
 }
 
 .slack-clone--header__form-search {
