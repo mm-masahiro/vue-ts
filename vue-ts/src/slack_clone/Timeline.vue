@@ -4,8 +4,6 @@
 
 		</div>
 		<div class="comment">
-			<!-- <input type="text" class="comment--input" v-model="message"/>
-			<button class="comment--submit" @click="submitMessage">送信</button> -->
 			<textarea placeholder="xxxxへメッセージ" class="comment--input"></textarea>
 			<div class="comment--submit">
 				<button class="comment--submit__button" @click="submitMessage">送信</button>
@@ -84,7 +82,7 @@ export default defineComponent({
 .comment--input {
 	height: 70%;
 	width: 99%;
-	text-align: center;
+	text-align: left;
 	margin: auto;
 	border-style: none;
 }
