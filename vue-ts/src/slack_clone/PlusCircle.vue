@@ -12,7 +12,7 @@ export default defineComponent({
 <style>
 
 .pluscircle {
-	width: 10%;
+	height: 20px;
 	margin-left: 40px;
 }
 

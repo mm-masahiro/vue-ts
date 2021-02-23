@@ -26,33 +26,26 @@
 					<Notification />
 				</div>
 				<div class="slack-clone--main__user-name">{{ user.email }}</div>
-				<div class="slack-clone--main__user-name-header">
-					<div>チャンネル</div>
-					<PlusCircle />
+				<div class="slack-clone--sidebar">
+					<div class="slack-clone--main__user-name-header">
+						<div class="slack-clone--main__user-name-header-title">チャンネル</div>
+						<PlusCircle />
+					</div>
+					<div class="slack-clone--main__channel-name" v-for="channel in channels" :key="channel.id">
+						# {{ channel.channelName }}
+					</div>
 				</div>
-				<div class="slack-clone--main__channel-name" v-for="channel in channels" :key="channel.id">
-					# {{ channel.channelName }}
-				</div>
-				<div class="slack-clone--main__user-name-header">
-					<div>ダイレクトメッセージ</div>
-					<PlusCircle />
-				</div>
-				<div v-for="userlist in userLists" :key="userlist.id">
-					{{ userlist.email }}
+				<div class="slack-clone--sidebar">
+					<div class="slack-clone--main__dm-header">
+						<div class="slack-clone--main__dm-user">ダイレクトメッセージ</div>
+						<PlusCircle />
+					</div>
+					<div v-for="userlist in userLists" :key="userlist.id">
+						{{ userlist.email }}
+					</div>
 				</div>
 				<!-- <div class="slack-clone--main__user-name"># channel-2</div> -->
 			</div>
-			<!-- <div class="slack-clone--main__chat">
-				<div class="slack-clone--main__chat-contents">
-					<div class="slack-clone--main__chat-contents-icon">
-						<img src="../assets/hand1.png" class="slack-clone--main__chat-contents-icon-img">
-					</div>
-					<div class="slack-clone--main__chat-contents-profile">
-						<div>Masahiro</div>
-						<div>HogeHogeHogeHogeHogeHoge</div>
-					</div>
-				</div>
-			</div> -->
 			<div class="slack-clone--body">
 				<Timeline />
 				<Comment />
@@ -221,7 +214,7 @@ export default defineComponent({
 }
 
 .slack-clone--main__channel {
-	width: 15%;
+	width: 20%;
 	background: cornflowerblue;
 	display: flex;
 	flex-direction: column;
@@ -246,9 +239,32 @@ export default defineComponent({
 	margin-bottom: 5px;
 }
 
+.slack-clone--sidebar {
+	margin-bottom: 20px;
+}
+
 .slack-clone--main__user-name-header {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
+}
+
+.slack-clone--main__user-name-header-title{
+	width: 90%;
+	text-align: left;
+}
+
+.slack-clone--main__dm-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--main__dm-user {
+	font-size: 11px;
+	font-weight: bold;
+	width: 90%;
+	text-align: left;
 }
 
 .slack-clone--main__chat {
