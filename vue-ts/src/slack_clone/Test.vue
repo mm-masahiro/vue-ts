@@ -35,22 +35,22 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		addMessage() {
-			firebase.database().ref('slack').set({
-				content: this.message,
-				user: {
-					name: "Masahiro Morinaga"
-				}
-			});
-		},
-		pushMessage() {
-			firebase.database().ref('slack').push({
-				content: this.message,
-				user: {
-					name: this.name
-				}
-			})
-		}
+		// addMessage() {
+		// 	firebase.database().ref('slack').set({
+		// 		content: this.message,
+		// 		user: {
+		// 			name: "Masahiro Morinaga"
+		// 		}
+		// 	});
+		// },
+		// pushMessage() {
+		// 	firebase.database().ref('slack').push({
+		// 		content: this.message,
+		// 		user: {
+		// 			name: this.name
+		// 		}
+		// 	})
+		// }
 	},
 	// mount時にデータ取得する。ブラウザにアクセスすると自動でFirebaseのデータベースからデータを取ってくる
 	mounted() {

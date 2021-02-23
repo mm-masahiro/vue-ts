@@ -20,21 +20,32 @@
 		</div>
 		<div class="slack-clone--main">
 			<div class="slack-clone--main__channel">
-				<div class="slack-clone--main__channel-name">スレッド</div>
-				<div class="slack-clone--main__channel-name"># channel-1</div>
-				<div class="slack-clone--main__channel-name"># channel-2</div>
-			</div>
-			<!-- <div class="slack-clone--main__chat">
-				<div class="slack-clone--main__chat-contents">
-					<div class="slack-clone--main__chat-contents-icon">
-						<img src="../assets/hand1.png" class="slack-clone--main__chat-contents-icon-img">
+				<div class="slack-clone--main__channel-header">
+					<h1 class="slack-clone--main__channel-title">Slack clone</h1>
+					<!-- <img src="../assets/notification.svg" class="slack-clone--main__channel-img" /> -->
+					<Notification />
+				</div>
+				<div class="slack-clone--main__user-name">{{ user.email }}</div>
+				<div class="slack-clone--sidebar">
+					<div class="slack-clone--main__user-name-header">
+						<div class="slack-clone--main__user-name-header-title">チャンネル</div>
+						<PlusCircle />
 					</div>
-					<div class="slack-clone--main__chat-contents-profile">
-						<div>Masahiro</div>
-						<div>HogeHogeHogeHogeHogeHoge</div>
+					<div class="slack-clone--main__channel-name" v-for="channel in channels" :key="channel.id">
+						# {{ channel.channelName }}
 					</div>
 				</div>
-			</div> -->
+				<div class="slack-clone--sidebar">
+					<div class="slack-clone--main__dm-header">
+						<div class="slack-clone--main__dm-user">ダイレクトメッセージ</div>
+						<PlusCircle />
+					</div>
+					<div v-for="userlist in userLists" :key="userlist.id">
+						{{ userlist.email }}
+					</div>
+				</div>
+				<!-- <div class="slack-clone--main__user-name"># channel-2</div> -->
+			</div>
 			<div class="slack-clone--body">
 				<Timeline />
 				<Comment />
@@ -48,6 +59,8 @@ import Vue, { defineComponent } from 'vue'
 import SignIn from './SignIn.vue'
 import Timeline from './Timeline.vue'
 import Comment from './Comment.vue'
+import Notification from './Notification.vue'
+import PlusCircle from './PlusCircle.vue'
 import firebase from "firebase/app"
 import "firebase/auth"
 
@@ -55,15 +68,54 @@ export default defineComponent({
 	name: 'ChatPage',
 	components: {
 		Timeline,
-		Comment
+		Comment,
+		Notification,
+		PlusCircle
+	},
+	data() {
+		return {
+			user: firebase.auth().currentUser,
+			userLists: [
+				{
+					userId: 11,
+					email: 'hoge@email.com'
+				},
+				{
+					userId: 12,
+					email: 'tekitou0110@email.com'
+				},
+				{
+					userId: 13,
+					email: 'test@email.com'
+				},
+			],
+			channels: [
+				{
+					id: 1,
+					channelName: "Channel 1"
+				},
+				{
+					id: 2,
+					channelName: "Channel 2"
+				},
+				{
+					id: 3,
+					channelName: "Channel 3"
+				},
+			],
+		}
 	},
 	methods: {
 		signOut() {
 			firebase.auth().signOut();
 			this.$router.push('/sign-in')
 		}
+	},
+	mounted() {
+		this.user = firebase.auth().currentUser;
 	}
 })
+
 </script>
 
 <style>
@@ -162,15 +214,57 @@ export default defineComponent({
 }
 
 .slack-clone--main__channel {
-	width: 15%;
+	width: 20%;
 	background: cornflowerblue;
 	display: flex;
 	flex-direction: column;
 }
 
-.slack-clone--main__channel-name {
+.slack-clone--main__channel-header {
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--main__channel-title {
+	font-size: 20px;
+}
+
+/* .slack-clone--main__channel-img {
+	width: 12%;
+	padding: 2px;
+} */
+
+.slack-clone--main__user-name {
 	height: 20px;
 	margin-bottom: 5px;
+}
+
+.slack-clone--sidebar {
+	margin-bottom: 20px;
+}
+
+.slack-clone--main__user-name-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--main__user-name-header-title{
+	width: 90%;
+	text-align: left;
+}
+
+.slack-clone--main__dm-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.slack-clone--main__dm-user {
+	font-size: 11px;
+	font-weight: bold;
+	width: 90%;
+	text-align: left;
 }
 
 .slack-clone--main__chat {

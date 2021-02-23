@@ -15,7 +15,6 @@ const routes: Array<RouteRecordRaw> = [
 		beforeEnter: (to, from, next) => {
 			firebase.auth().onAuthStateChanged(user => {
 				if(user) {
-					console.log(user)
 					next()
 				} else {
 					next('/sign-in')
