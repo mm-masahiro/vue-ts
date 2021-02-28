@@ -8,7 +8,7 @@ export default createStore({
 	// stateへの書き込みはこのmutationsの中でのみ行う
   mutations: {
 		globalIncrement(state) {
-			state.globalCount ++
+			state.globalCount += 1;
 		}
   },
   actions: {

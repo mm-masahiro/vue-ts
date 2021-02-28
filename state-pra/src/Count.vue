@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<Counter name="Counter 1" :initCount="5" @emitUp="getEvent" />
-		<Counter name="Counter 2" :initCount="10" @emitUp="getEvent" />
+		<Counter name="Counter 1" :initCount="5" @emitUp="getEvent()" />
+		<Counter name="Counter 2" :initCount="10" @emitUp="getEvent()" />
 		<p>{{ count }}</p>
 		<p>{{ globalCount }}</p>
 	</div>
@@ -24,7 +24,7 @@ export default defineComponent({
 	},
 	methods: {
 		getEvent() {
-			this.$store.commit('globalIncrement')
+			this.$store.commit("globalIncrement")
 		}
 	},
 	computed: {
