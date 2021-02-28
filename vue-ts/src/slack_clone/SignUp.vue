@@ -21,15 +21,29 @@ export default defineComponent({
 	data() {
 		return {
 			email: '',
-			password: ''
+			password: '',
+			errors: []
 		}
 	},
 	methods: {
 		registerUser() {
 			firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(response => {
-				console.log(response)
+				const user = response.user;
+				firebase.database().ref('users').child(user.uid).set({
+					userId: user.uid,
+					email: user.email
+				}).then(() => {
+					this.$router.push('/')
+				}).catch(e => {
+					console.log(e);
+				})
 			}).catch(e => {
-				console.log(e)
+				console.log(e);
+				if (e.code == 'auth/email-already-in-use') {
+					this.errors.push('入力したメールアドレスは登録済みです');
+				} else {
+					this.errors.push('入力したメールアドレスかパスワードに問題があります。')
+				}
 			});
 		}
 	}
